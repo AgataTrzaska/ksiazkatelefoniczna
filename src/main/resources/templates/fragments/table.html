@@ -1,0 +1,53 @@
+<div th:fragment="table" class="container" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" >
+<!DOCTYPE html>
+    <html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css?version=160">
+    </head>
+    <body>
+
+    <table id="myTable">
+            <tr>
+                <th>imię</th>
+                <th>nazwisko</th>
+                <th>telefon domowy</th>
+                <th>telefon służbowy</th>
+                <th>email</th>
+                <th>zdjęcie</th>
+                <th>zmiany</th>
+            </tr>
+            <tr th:each="p : ${persons}">
+                <td th:text = "${p.getPersonName()}"></td>
+                <td th:text = "${p.getPersonLastName()}"></td>
+                <td th:text = "${p.getHomeNumber()}"></td>
+                <td th:text = "${p.getWorkNumber()}"></td>
+                <td th:text = "${p.getEmail()}"></td>
+                <td><img th:src="@{${p.getPersonPhoto()}}" alt="Photo" style="height: 80px; width: auto"></td>
+                <td>
+                <form action="/update" th:object="${person}" method="post">
+                        <div class="form-gruop">
+                            <input name="personName" type="hidden" th:value="${p.getPersonName()}" >
+                            <input name="personLastName" type="hidden" th:value="${p.getPersonLastName()}" >
+                            <input name="homeNumber" type="hidden" th:value="${p.getHomeNumber()}" >
+                            <input name="workNumber" type="hidden" th:value="${p.getWorkNumber()}" >
+                            <input name="email" type="hidden" th:value="${p.getEmail()}" >
+                            <input name="personPhoto" type="hidden" th:value="${p.getPersonPhoto()}">
+
+                            <button class="myButton2" type="submit"
+                                    style="margin: 0.2em; width: 60px; float: left">edycja
+                            </button>
+                    </form>
+                    <form action="/delete" method="get">
+                        <input type="hidden" th:value="${p.getEmail()}" name="persons">
+                        <button class="myButton" type="submit">
+                            <i class="fa fa-trash" aria-hidden="true"></i> usuń
+                        </button></form></td>
+
+            </th>
+            </thead>
+    </table>
+    </body>
+    </html>
+</html>
+</div>

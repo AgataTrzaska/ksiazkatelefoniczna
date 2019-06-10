@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css?version=160">
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6-md">
+            <form action="/upd" th:object="${person}" method="post" >
+                <input type="hidden" th:value="${person.getEmail()}" name="param"/>
+
+                <div class="form-group">
+                    <small class="form-text text-muted">Imię</small>
+                    <input type="text" name="personName" th:value="${person.getPersonName()}" placeholder="imię">
+                </div>
+
+                <div class="form-group">
+                    <small class="form-text text-muted">Nazwisko</small>
+                    <input type="text" name="personLastName" th:value="${person.getPersonLastName()}" placeholder="nazwisko">
+                </div>
+
+                <div class="form-group">
+                    <small class="form-text text-muted">Telefon domowy</small>
+                    <input type="number" name="homeNumber" th:value="${person.getHomeNumber()}" placeholder="telefon domowy">
+                </div>
+
+                <div class="form-group">
+                    <small class="form-text text-muted">Telefon służbowy</small>
+                    <input type="number" name="workNumber" th:value="${person.getWorkNumber()}" placeholder="telefon służbowy" >
+                </div>
+
+                <div class="form-group">
+                <small class="form-text text-muted">Email</small>
+                <input type="text" name="email" th:value="${person.getEmail()}" placeholder="email">
+        </div>
+
+        <div class="form-group">
+            <small class="form-text text-muted">Zdjęcie</small>
+            <input type="text" name="personPhoto" th:value="${person.getPersonPhoto()}" placeholder="zdjęcie" >
+        </div>
+
+                <input type="submit" value="zapisz">
+
+                <input href="/persons" type="submit" value="anuluj">
+
+
+    </div>
+</div>
+
+
+</body>
+</html>

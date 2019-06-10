@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head xmlns:th="http://www.thymeleaf.com">
+    <link rel="stylesheet" type="text/css" href="style.css?version=160">
+</head>
+<body>
+
+<div class="container">
+        <h1 class="font-weight-light content">Książka telefoniczna</h1>
+        <a href="/persons"><button class="myButton2" >admin panel</button></a>
+    <a href="/logout"><button class="myButton">Wyloguj się</button></a>
+    </div>
+
+    <div class="row">
+
+        <hr/>
+        <div th:replace="fragments/overview :: persons"></div>
+    </div>
+</div>
+
+
+</body>
+</html>

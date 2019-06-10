@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head xmlns:th="http://www.thymeleaf.com">
+    <div class="container" xmlns:th="http://www.thymeleaf.org" th:fragment="persons">
+        <link rel="stylesheet" type="text/css" href="style.css?version=160">
+        </head>
+<body>
+<script>
+    function myFunction() {
+        var input, filter, found, table, tr, td, i, j;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td");
+            for (j = 0; j < td.length -1; j++) {
+                if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                }
+            }
+            if (found) {
+                tr[i].style.display = "";
+                found = false;
+            } else {
+                if (tr[i].id != 'tableHeader'){tr[i].style.display = "none";}
+            }
+
+        }
+    }
+</script>
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Szukaj..." title="Type in a name">
+<table id="myTable">
+    <tr>
+    <tr class="header" id='tableHeader'>
+    <th >imię</th>
+        <th>nazwisko</th>
+        <th>telefon domowy</th>
+        <th>telefon służbowy</th>
+        <th>email</th>
+    <th>zdjęcie</th>
+
+    <tr th:each="p : ${persons}">
+        <td th:text = "${p.getPersonName()}"></td>
+        <td th:text = "${p.getPersonLastName()}"></td>
+        <td th:text = "${p.getHomeNumber()}"></td>
+        <td th:text = "${p.getWorkNumber()}"></td>
+        <td th:text = "${p.getEmail()}"></td>
+        <td><img th:src="@{${p.getPersonPhoto()}}" alt="Photo" style="height: 80px; width: auto"></td>
+    </tr>
+</table>
+</body>
+</html>
